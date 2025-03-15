@@ -1,8 +1,7 @@
 import  './styles/App.css'
 import PostList from "./components/PostList";
 import { useRef, useState } from "react";
-import MyButton from './UI/button/MyButton';
-import MyInput from  './UI/myInput/MyInput';
+import PostForm from './components/PostForm';
 
 function App() {
 
@@ -16,35 +15,27 @@ function App() {
     ] 
 ) 
 
-  const [post, setPost] = useState({title: '', body: ''})
+
+  const createPost = (newPost) => {
+    setPosts([...posts, newPost])
+  }
 
 
-  const addNewPost = (e) => {
-
-    e.preventDefault()
-
-
-    setPosts([...posts, {...post, id: Date.now()}])
-
+  const removePost = (post) => {
+    setPosts(posts.filter(p => p.id !== post.id))
   }
 
 
   return (
     <div className="App">
-      <MyInput
-        type='text' 
-        placeholder='Создание поста'
-        onChange={e => setPost({...post, title: e.target.value})}
 
-       />
-      <MyInput
-        type='text' 
-        placeholder='Описание поста'
-        onChange={e => setPost({...post, body: e.target.value})}
-
-       />
-      <MyButton onClick={addNewPost}>Создать пост</MyButton>
-      <PostList posts={posts} title='Список постов 1' />
+      <PostForm create={createPost} />
+      
+      {posts.length !== 0
+        ? <PostList posts={posts} remove={removePost} title='Список постов 1' />
+        : <h1 style={{textAlign: 'center'}}>Посты не найдены</h1>
+      }
+      
     </div>
   );
 }
