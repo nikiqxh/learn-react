@@ -49,7 +49,7 @@ function Posts() {
   return (
     <div className="App">
       <MyButton style={{ marginTop: 30 }} onClick={() => setModal(true)}>
-        Создать постт
+        Создать пост
       </MyButton>
       <PostFilter filter={filter} setFilter={setFilter} />
 
