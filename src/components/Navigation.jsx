@@ -5,8 +5,8 @@ const Navigation = () => {
   return (
     <div className='navbar'>
         <div className="navbar__links">
-            <Link to='/Posts'>Главная</Link>
-            <Link to='/About'>О нас</Link>
+            <Link to='/posts'>Главная</Link>
+            <Link to='/about'>О нас</Link>
         </div>
     </div>
   )

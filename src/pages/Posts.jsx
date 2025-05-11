@@ -20,6 +20,7 @@ function Posts() {
   const [limit, setLimit] = useState(10);
   const [page, setPage] = useState(1);
   const sortedAndSearchedPosts = usePosts(posts, filter.sort, filter.query);
+
   const [fetchPosts, isPostLoading, postError] = useFetching(async () => {
     const response = await PostService.getAll(limit, page);
     setPosts(response.data);
@@ -27,7 +28,6 @@ function Posts() {
     setTotalPages(getPageCount(totalCount, limit));
   });
 
-  
 
   const changePage = (page) => {
     setPage(page)
